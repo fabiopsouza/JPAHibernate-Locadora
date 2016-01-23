@@ -17,17 +17,13 @@ public abstract class RepositoryBase <T> {
 	}
 	
 	public List<T> get(){
-		em.getTransaction().begin();
 		List<T> list = em.createQuery("FROM " + clazz.getName()).getResultList();
-		em.getTransaction().commit();
 		em.close();
 		return list;
 	}
 	
 	public T getById(int id){
-		em.getTransaction().begin();
 		T obj = (T)em.find(clazz, id);
-		em.getTransaction().commit();
 		em.close();
 		return obj;
 	}
